@@ -3,7 +3,9 @@ import { V2_MetaFunction, useLoaderData } from "@remix-run/react";
 
 export const loader = ({ request }: LoaderArgs) => {
   const orignalUrl = request.headers.get("x-original-url");
-  return json({ requestUrl: request.url, orignalUrl });
+
+  const headers = Array.from(request.headers.keys());
+  return json({ requestUrl: request.url, orignalUrl, headers });
 };
 
 export const meta: V2_MetaFunction = () => {
